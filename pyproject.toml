@@ -1,0 +1,65 @@
+[project]
+name = "datura"
+version = "0.0.0"
+description = "Datura AI coding test"
+authors = [
+    {name = "Daniel Edgecombe", email = "daniel@nrwl.co"},
+]
+repository="https://github.com/NRWLDev/datura/"
+homepage="https://github.com/NRWLDev/datura/"
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest >= 7.4.4",
+    "ruff >= 0.6.4",
+    "pre-commit >= 3.7.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--random-order"
+markers = []
+
+[tool.coverage.report]
+sort = "cover"
+fail_under = 95
+show_missing = true
+skip_covered = true
+exclude_lines = [
+    "if t.TYPE_CHECKING:",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src/datura"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["ANN", "D", "S101", "S105", "S106", "SLF001"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["datura"]
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
